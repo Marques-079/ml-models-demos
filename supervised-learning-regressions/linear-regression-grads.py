@@ -31,7 +31,7 @@ class LinearRegressionGD:
             self.weights -= learning_rate * dw
             self.bias -= learning_rate * db
 
-            if epoch % 50 == 0 or epoch == epochs - 1:
+            if epoch % 100 == 0 or epoch == epochs - 1:
                 mse = np.mean((y - y_pred) ** 2)
                 print(f"Epoch {epoch}: MSE = {mse:.4f}")
 
@@ -72,10 +72,31 @@ X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, 
 
 
 model = LinearRegressionGD()
-model.fit(X_train, y_train, learning_rate=0.01, epochs=2000)
+model.fit(X_train, y_train, learning_rate=0.01, epochs=1000)
 
 
 acc = model.accuracy(X_test, y_test)
 print(f"Accuracy within 5% tolerance: {acc * 100:.2f}%")
 print("RMSE:", model.rmse(X_test, y_test))
 print("R² Score:", model.r2_score(X_test, y_test))
+
+'''
+r-regression-grads.py
+Epoch 0: MSE = 237.9130
+Epoch 100: MSE = 8.9130
+Epoch 200: MSE = 2.9061
+Epoch 300: MSE = 1.7197
+Epoch 400: MSE = 1.3052
+Epoch 500: MSE = 1.1520
+Epoch 600: MSE = 1.0951
+Epoch 700: MSE = 1.0740
+Epoch 800: MSE = 1.0661
+Epoch 900: MSE = 1.0632
+Epoch 999: MSE = 1.0621
+Accuracy within 5% tolerance: 64.31%
+RMSE: 1.0272807771201529
+R² Score: 0.9907054793502006
+
+This is a promising result which lies similar to the mathematically calculated line of best fit. RMSE and R^2 score 
+show high accuracy here which is to be expected from a cleaner dataset.
+'''

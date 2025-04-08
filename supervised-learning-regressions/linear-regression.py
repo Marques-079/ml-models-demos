@@ -15,6 +15,7 @@ class LinearRegression:
         # Normal equation: w = (X^T X)^-1 X^T y
         self.weights = np.linalg.inv(X_b.T @ X_b) @ X_b.T @ y
 
+
     def predict(self, X):
         X_b = np.c_[np.ones((X.shape[0], 1)), X]  
         return X_b @ self.weights
@@ -64,6 +65,11 @@ print("RMSE:", model.rmse(X_test, y_test))
 
 acc = model.accuracy(X_test, y_test)
 print(f"Accuracy within 5% tolerance: {acc * 100:.2f}%")
+
+'''
+Fun fact: When data contains many features the linear regression line of best fit exists in a higher dimensional space
+equal to the number of features used in the calculation
+'''
 
 
 
