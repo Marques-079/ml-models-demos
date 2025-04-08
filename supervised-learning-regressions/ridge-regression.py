@@ -27,14 +27,16 @@ class RidgeRegressionGD:
             dw = (-2 / n_samples) * (X.T @ error) + 2 * self.alpha * self.weights
             db = (-2 / n_samples) * np.sum(error)
 
-            '''So what this does qualaitaitverly is adds an increase proportional to already present weight values 
+            '''So what this does quantitavely is adds an increase proportional to already present weight values 
             before the multiplication of the learning rate (prior to gradient descent). This increase in magnitude means 
             the update moves towards zero at a faster weight and if moving away from zero for whatever reason would act to 
             reduce the magnitude of the update (neg - pos = lessneg), thus pinning our weights around 0.
             
-            This extra layer of regularization is what makes weights more stable by punishing big weights and prevent overfitting
+            This extra layer of regularization (L2) is what makes weights more stable by punishing big weights and prevent overfitting
             and relliance on certain features. I guess you can think about the gradient decent more like a Vase than a Bowl where
             the bottom point is the local minma.
+
+            dw = (-2 / n_samples) * (X.T @ error) + 2 * self.alpha * self.weights
             '''
 
             # Update parameters
