@@ -51,7 +51,7 @@ class LinearRegressionGD:
         y_pred = self.predict(X)
         mask = y != 0
         relative_error = np.abs((y_pred[mask] - y[mask]) / y[mask])
-        within_x_percent = relative_error <= 0.10  # 10% tolerance
+        within_x_percent = relative_error <= 0.050  # 5% tolerance
         return np.mean(within_x_percent)
 
 df = pd.read_csv("data-preprocessing/scaled_numerical1.csv")
